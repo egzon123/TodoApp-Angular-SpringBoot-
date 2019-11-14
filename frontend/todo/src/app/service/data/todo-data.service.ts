@@ -14,9 +14,10 @@ export class TodoDataService {
 
   retrieveAllTodos(username) {
     return this.http.get<Todo[]>(`${TODO_JPA_API_URL}/users/${username}/todos`);
-    //console.log("Execute Hello World Bean Service")
+    
   }
   retrieveAllTodosAdmin(){
+    console.log("Inside todo admin api")
     return this.http.get<Todo[]>(`${TODO_JPA_API_URL}/users/todos`);
   }
   

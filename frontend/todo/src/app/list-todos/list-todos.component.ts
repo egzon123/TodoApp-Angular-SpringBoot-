@@ -27,19 +27,6 @@ export class ListTodosComponent implements OnInit {
   message: string
   isUserAdmin:boolean
 
-  // = [
-  //   new Todo(1, 'Learn to Dance', false, new Date()),
-  //   new Todo(2, 'Become an Expert at Angular', false, new Date()),
-  //   new Todo(3, 'Visit India', false, new Date())
-  //   // {id : 1, description : },
-  //   // {id : 2, description : ''},
-  //   // {id : 3, description : 'Visit India'}
-  // ]
-
-  // todo = {
-  //     id : 1,
-  //     description: 'Learn to Dance'
-  // }
 
   constructor(
     private todoService:TodoDataService,
@@ -72,6 +59,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   refreshTodosAdmin(){
+    console.log("Refresh todos Admin")
     this.todoService.retrieveAllTodosAdmin().subscribe(
       response => {
         console.log(response);

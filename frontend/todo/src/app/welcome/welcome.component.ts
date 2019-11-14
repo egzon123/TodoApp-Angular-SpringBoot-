@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 import { Component, OnInit } from '@angular/core';//'./app.component';
+import { USER_ROLES } from '../service/basic-authentication.service';
 
 
 
@@ -18,17 +19,30 @@ export class WelcomeComponent implements OnInit {
   message = 'Some Welcome Message'
   welcomeMessageFromService:string
   name = ''
-  
+  private role;
+  returnedRole = '';
   constructor(
     private route:ActivatedRoute,
-    private service:WelcomeDataService) { 
-
+    private service:WelcomeDataService,
+    ) { 
+      this.role = sessionStorage.getItem(USER_ROLES);
   }
 
-  
+  showAsRole(){
+    if(this.role === 'ROLE_ADMIN'){ 
+      this.returnedRole = 'Admin';
+    }
+    else if(this.role === 'ROLE_USER'){
+      this.returnedRole = 'User'
+    }
+    return this.returnedRole;
+  }
+
+
   ngOnInit(){
 
     this.name = this.route.snapshot.params['name'];
+   
     
   }
 

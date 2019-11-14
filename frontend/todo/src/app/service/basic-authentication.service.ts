@@ -49,6 +49,27 @@ export class BasicAuthenticationService {
       );
     //console.log("Execute Hello World Bean Service")
   }
+  executeUserRegistration(name,email,username,password){
+    const requestOptions: Object = {
+      //If your response is text not json
+      responseType: 'text'
+    }
+    return this.http.post<any>(
+      `${API_URL}/api/auth/signup`,{
+        name,
+        email,
+        username,
+        password
+      },requestOptions).pipe(map((data,error) => {
+        if(data){
+          return data;
+        }
+        else{
+          return error;
+        }
+      }))
+  }
+  
 
 
   executeAuthenticationService(username, password) {

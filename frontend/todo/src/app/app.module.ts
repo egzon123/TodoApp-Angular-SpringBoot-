@@ -14,6 +14,9 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TodoComponent } from './todo/todo.component';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './user/user.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 
@@ -27,7 +30,10 @@ import { TodoComponent } from './todo/todo.component';
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    TodoComponent
+    TodoComponent,
+    UsersComponent,
+    UserComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,

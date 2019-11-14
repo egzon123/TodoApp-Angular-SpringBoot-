@@ -42,7 +42,7 @@ public class User{
     @NotBlank
     @Size(min=6, max = 100)
     private String password;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
     private List<Todo> todoList;
 
     @ManyToMany(fetch = FetchType.LAZY)
