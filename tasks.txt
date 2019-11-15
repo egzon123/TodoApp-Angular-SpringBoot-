@@ -1,0 +1,4 @@
+1)Te Sign Up full name duhet me pas ma shume se 5 karaktere, email field duhet me kan valid,username edhe password min 5 karaktere ne front me menaxhu.
+2)Te Home me pas ni simple dashboard me cards psh sa todo i ki krejt sa jane kry sa ende nuk jan kry edhe psh ni welcome message "welcome Florian Hoti you are loged in as admin " me tvogla.
+3)Te Todos lista me kan me cards veq ne forme horizontale te gjat, nice edit edhe delete icon edhe nese shton ose editon perdore modals.
+4)Styling si pika 3) mengjimi i users si admin .
