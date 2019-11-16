@@ -6,11 +6,11 @@ import javax.validation.constraints.*;
 
 public class SignUpForm {
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 4, max = 50)
     private String name;
 
     @NotBlank
-    @Size(min = 3, max = 50)
+    @Size(min = 4, max = 50)
     private String username;
 
     @NotBlank

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
 import { Router } from '@angular/router';
+import { User } from '../users/users.component';
 
 @Component({
   selector: 'app-user-register',
@@ -8,10 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit {
-  name = ''
-  username = ''
-  password = ''
-  email = ''
+
+  user:User
+  // name = ''
+  // username = ''
+  // password = ''
+  // email = ''
 
   errorMessage = ''
   successfullMessage =''
@@ -22,10 +25,16 @@ export class UserRegisterComponent implements OnInit {
     private basicAuthenticationService: BasicAuthenticationService) { }
 
   ngOnInit() {
+    this.user = new User(0,'','','','',null);
+  }
+  
+  onSubmit(){
+    return this.validRegister;
   }
 
   handleUserRegistration() {
-    this.basicAuthenticationService.executeUserRegistration(this.name,this.email,this.username, this.password)
+    console.log(this.onSubmit())
+    this.basicAuthenticationService.executeUserRegistration(this.user.name,this.user.email,this.user.username, this.user.password)
         .subscribe(
           data => {
             console.log(data)

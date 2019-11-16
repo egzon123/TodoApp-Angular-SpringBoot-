@@ -10,16 +10,30 @@
    
     <div class="alert alert-warning" *ngIf='invalidRegister'>{{errorMessage}}</div>
     <div class="alert alert-success" *ngIf='validRegister'>{{successfullMessage}}</div>
+   
+
+    
     <h4>Sign Up</h4>
     <br>
     <!-- Login Form -->
-    <form>
-        <input type="text"  class="fadeIn second" name="name" placeholder="Full Name" [(ngModel)]="name" >
-        <input type="text"  class="fadeIn second" name="email" placeholder="Email" [(ngModel)]="email" >
+    <form  #userForm="ngForm" (ngSubmit)="!userForm.invalid &&  handleUserRegistration()">
 
-      <input type="text"  class="fadeIn second" name="username" placeholder="username" [(ngModel)]="username" >
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password"  [(ngModel)]="password">
-      <input (click)=handleUserRegistration() type="submit" class="fadeIn fourth" value="Sign Up">
+        <input type="text"  class="form-control fadeIn second" #name ="ngModel"
+        required ="required" minlength="4" name="name" placeholder="Full Name" [(ngModel)]="user.name" >
+        <div class="alert alert-warning" *ngIf="name.touched && name.invalid">Enter min 4 characters</div>
+
+        <input type="text"  required ="required" #email = "ngModel"class="fadeIn second form-control" name="email" placeholder="Email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <div class="alert alert-warning" *ngIf="email.touched && email.invalid">Enter valid email</div>
+
+        <input type="text"  class="form-control fadeIn second" #username ="ngModel"
+        required ="required" minlength="4" name="username" placeholder="Username" [(ngModel)]="user.username" >
+        <div class="alert alert-warning" *ngIf="username.touched && username.invalid">Enter min 4 characters for username</div>
+
+        <input type="text"  class="form-control fadeIn second" #password ="ngModel"
+        required ="required" minlength="6" name="password" placeholder="Password" [(ngModel)]="user.password" >
+        <div class="alert alert-warning" *ngIf="password.touched && password.invalid">Enter min 6 characters for password</div>
+
+      <input  type="submit" class="fadeIn fourth" value="Sign Up">
       
     </form>
 
