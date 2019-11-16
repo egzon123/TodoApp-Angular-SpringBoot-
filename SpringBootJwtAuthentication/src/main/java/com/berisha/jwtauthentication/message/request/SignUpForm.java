@@ -10,7 +10,7 @@ public class SignUpForm {
     private String name;
 
     @NotBlank
-    @Size(min = 4, max = 50)
+    @Size(min = 4       , max = 50)
     private String username;
 
     @NotBlank
