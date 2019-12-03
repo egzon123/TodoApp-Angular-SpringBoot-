@@ -36,7 +36,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 <div class="container">
   <div class="card">
@@ -66,11 +65,25 @@
               <td>{{todo.done}}</td>
               <td *ngIf='isUserAdmin'>{{todo.username}}</td>
               <td style="padding:12px 0px 12px 0px;">
-                <div class="update" style='margin: 0px 20px 0px 0px; float: left;' (click)="updateTodo(todo.id)">
-                  <i class='fa fa-edit'></i>
-                </div>
-                <div class="delete" (click)="deleteTodo(todo.id)">
-                  <i class='fa fa-trash'></i>
+               
+                <div class="dropdown">
+                  <button style="margin-left: 15px; font-weight: 1000;" type="button" class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <!-- <i class="fas fa-ellipsis-h"></i> -->
+                    . . .
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-item">
+                        <div class="delete" (click)="deleteTodo(todo.id)">
+                            Delete
+                          </div>
+                    </div>
+                    
+                    <div class="dropdown-item">
+                        <div class="update" (click)="updateTodo(todo.id)">
+                            Update 
+                          </div>
+                    </div>
+                  </div>
                 </div>
               </td>
             </tr>

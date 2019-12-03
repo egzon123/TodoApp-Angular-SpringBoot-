@@ -73,12 +73,32 @@
                 <td style="border: none;">{{role.name}}</td>
               </div></td>
               <td style="padding:12px 0px 12px 0px;">
-                <div class="update" style='margin: 0px 20px 0px 0px; float: left;' [routerLink]="'/users/'+user.id">
+                <!-- <div class="update" style='margin: 0px 20px 0px 0px; float: left;' [routerLink]="'/users/'+user.id">
                   <i class='fa fa-edit'></i>
                 </div>
                 <div class="delete" (click)="deleteUser(user.id)">
                   <i class='fa fa-trash'></i>
-                </div>
+                </div> -->
+                <div class="dropdown">
+                    <button style="margin-left: 15px; font-weight: 1000;" type="button" class="btn btn-danger" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <!-- <i class="fas fa-ellipsis-h"></i> -->
+                      . . .
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <div class="dropdown-item">
+                          <div class="update" [routerLink]="'/users/'+user.id">
+                            Update 
+                          </div>
+                          
+                      </div>
+                      
+                      <div class="dropdown-item">
+                          <div class="delete" (click)="deleteUser(user.id)">
+                              Delete
+                            </div>
+                      </div>
+                    </div>
+                  </div>
               </td>
             </tr>
           </tbody>

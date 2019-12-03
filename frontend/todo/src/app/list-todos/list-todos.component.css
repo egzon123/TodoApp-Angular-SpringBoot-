@@ -19,3 +19,21 @@
 .fa-trash:hover{
     color: red;
 }
+
+.delete:hover{
+    color: red;
+}
+
+.update:hover{
+    color: blue;
+}
+
+.dropdown-item:hover{
+    cursor: pointer;
+}
+
+.dropdown-item:hover{
+    font-weight: bold;
+}
+
+
