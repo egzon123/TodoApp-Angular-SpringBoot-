@@ -20,7 +20,6 @@ export class UserRegisterComponent implements OnInit {
   successfullMessage =''
   invalidRegister = false
   validRegister = false;
-  emptyValues = false;
 
   constructor(  private router: Router,
     private basicAuthenticationService: BasicAuthenticationService) { }
@@ -31,15 +30,6 @@ export class UserRegisterComponent implements OnInit {
   
   onSubmit(){
     return this.validRegister;
-  }
-
-  isFormEmpty(){
-    if(this.user.name.length >= 4 && this.user.email.length>2 && this.user.username.length >=4 && this.user.password.length >= 6){
-      this.emptyValues = false;
-    }else{
-      this.emptyValues = true;
-    }
-
   }
 
   handleUserRegistration() {

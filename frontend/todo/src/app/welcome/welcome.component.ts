@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 import { Component, OnInit } from '@angular/core';//'./app.component';
-import { USER_ROLES } from '../service/basic-authentication.service';
+import { USER_ROLES, BasicAuthenticationService } from '../service/basic-authentication.service';
 
 
 
@@ -16,34 +16,51 @@ import { USER_ROLES } from '../service/basic-authentication.service';
 
 export class WelcomeComponent implements OnInit {
 
-  message = 'Some Welcome Message'
+  fullName: string;
+  isAdmin: boolean;
   welcomeMessageFromService:string
   name = ''
+  roleAdmin: string = "an Admin";
+  roleUser: string = "a User";
+  state: boolean = false;
   private role;
   returnedRole = '';
   constructor(
     private route:ActivatedRoute,
     private service:WelcomeDataService,
+    private authService:BasicAuthenticationService
     ) { 
-      this.role = sessionStorage.getItem(USER_ROLES);
+  
   }
 
-  showAsRole(){
+  showAsRole(): string{
     if(this.role === 'ROLE_ADMIN'){ 
-      this.returnedRole = 'Admin';
+      return 'an Admin';
     }
-    else if(this.role === 'ROLE_USER'){
-      this.returnedRole = 'User'
-    }
-    return this.returnedRole;
+    return 'a User';
   }
 
 
   ngOnInit(){
 
     this.name = this.route.snapshot.params['name'];
-   
-    
+    this.role = sessionStorage.getItem(USER_ROLES);
+    this.name = this.splitFullName();
+  }
+
+  ngDoCheck() {
+    //this.isUserLoggedIn = this.hardcodedAuthenticationService.isUserLoggedIn();
+    this.fullName = this.authService.getAuthenticatedUserFullName()
+    let userRoles = this.authService.getAuthenticatedUserRoles()
+    if(userRoles != null){
+      this.isAdmin = userRoles.includes("ROLE_ADMIN")
+    }
+  }
+
+  splitFullName(): string{
+    let fullName: string = sessionStorage.getItem("fullName");
+    let firstName: string[] = fullName.split(" ");
+    return firstName[0];
   }
 
   getWelcomeMessage() {
@@ -77,6 +94,17 @@ export class WelcomeComponent implements OnInit {
     console.log(error);
  
     this.welcomeMessageFromService = error.error.message
+  }
+
+  changeStateName(): string{
+    if(this.changeState()){
+      return "DONE";
+    }
+    return "DOING";
+  }
+
+  changeState(): boolean{
+    return this.state = !this.state;
   }
 }
 

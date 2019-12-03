@@ -24,4 +24,32 @@ export class UsersDataService {
   deleteUser(id){
     return this.http.delete(`${TODO_JPA_API_URL}/users/${id}`);
   }
+
+  getUserById(id){
+    return this.http.get(`${TODO_JPA_API_URL}/users/${id}`, id)
+  }
+
+  updateUser(id, user){
+    return this.http.put(`${TODO_JPA_API_URL}/user/${id}/updateUser`, user);
+  }
+
+  updateRole(id, roleId){
+    return this.http.put(`${TODO_JPA_API_URL}/users/${id}/roles/${roleId}/updateRole`, roleId);
+  }
+
+  deleteRole(id, roleId){
+    return this.http.delete(`${TODO_JPA_API_URL}/users/${id}/roles/${roleId}/deleteRole`);
+  }
+
+  addUser(user){
+    return this.http.post(`${TODO_JPA_API_URL}/users`, user);
+  }
+
+  updateUserPassword(id, pass){
+    const body = {
+      password: pass
+    }
+    return this.http.put(`${TODO_JPA_API_URL}/user/${id}/changePassword`, body);
+  }
+  
 }

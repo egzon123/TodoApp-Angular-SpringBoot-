@@ -1,4 +1,4 @@
-<h1> Todo </h1>
+<!-- <h1> Todo </h1>
 
 <div class="alert alert-success" *ngIf='message'>{{message}}</div>
 
@@ -18,7 +18,6 @@
       </tr>
     </thead>
     <tbody>
-      <!--   for (Todo todo: todos) {  -->
               <tr *ngFor="let todo of todos">
                 <td>{{todo.description}}</td>
                 <td>{{todo.targetDate | date | uppercase}}</td>
@@ -27,11 +26,58 @@
                 <td ><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button></td>
                 <td ><button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td>
               </tr>
-      <!-- } -->
     </tbody>
 
   </table>
 
 
 
+</div> -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Manage Todo's</h5>
+    </div>
+    <div class="card-body">
+      <button (click)="addTodo()" style="margin: 0px 0px 20px 0px; float: left;" class="btn btn-primary"><i class="fa fa-plus" data-target="#todoModal" data-toggle="modal"></i> Add Todos</button>
+      <h3><input class="form-control" placeholder="Search" [(ngModel)]="search"></h3>
+      <div class="table-resposive table-hover shadow-lg p-3 mb-5 bg-white rounded">
+        <table class="table">
+          <caption>List of To-dos</caption>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Description</th>
+              <th scope="col">Target Date</th>
+              <th scope="col">is Completed?</th>
+              <th scope="col" *ngIf='isUserAdmin'>Username</th>
+              <th scope="col" >Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let todo of filterTodos()">
+              <td>{{todo.description}}</td>
+              <td>{{todo.targetDate | date | uppercase}}</td>
+              <td>{{todo.done}}</td>
+              <td *ngIf='isUserAdmin'>{{todo.username}}</td>
+              <td style="padding:12px 0px 12px 0px;">
+                <div class="update" style='margin: 0px 20px 0px 0px; float: left;' (click)="updateTodo(todo.id)">
+                  <i class='fa fa-edit'></i>
+                </div>
+                <div class="delete" (click)="deleteTodo(todo.id)">
+                  <i class='fa fa-trash'></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
+

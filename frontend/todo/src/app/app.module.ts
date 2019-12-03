@@ -17,7 +17,13 @@ import { TodoComponent } from './todo/todo.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
-
+import { UpcomingComponent } from './upcoming/upcoming.component';
+import { CompletedComponent } from './completed/completed.component';
+import { OthersComponent } from './others/others.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+// import { DetailsModal, NgbdDetailsModal } from './list-todos-details/modal-show-details.component';
+import { AddUsersComponent } from './add-users/add-users.component';
 
 
 
@@ -34,11 +40,19 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     TodoComponent,
     UsersComponent,
     UserComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    UpcomingComponent,
+    CompletedComponent,
+    OthersComponent,
+    AddUsersComponent,
+    // DetailsModal,
+    // NgbdDetailsModal
+    AddUsersComponent
   ],
   imports: [
     BrowserModule,
-    
+    BrowserAnimationsModule,
+	  ToastrModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     HttpClientModule

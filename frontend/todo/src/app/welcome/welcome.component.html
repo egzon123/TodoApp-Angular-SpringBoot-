@@ -1,15 +1,117 @@
-<H1>Welcome! {{name}}, you are loged in as a {{showAsRole()}}</H1>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-<div class="container">
-  Welcome {{name}}. You can manage your todos <a routerLink="/todos">here</a>
+<div class="greet-container">
+    <div class="row">
+        <!-- <div class="col-md-4">
+          <div *ngIf = "showAsRole() === roleAdmin"  class="greetAdmin">
+              <i class = "fas fa-user-cog fa-10x"></i>
+          </div>
+          <div *ngIf = "showAsRole() === roleUser" class="greetUser" >
+              <i class="fas fa-user fa-10x"></i>
+          </div>
+        </div> -->
+        <div class="col-md-12 text-center" style="padding: 50px 0px 50px 0px;" >
+          <h1>WELCOME, {{splitFullName()}}</h1>
+          <h1>You are logged in as {{showAsRole()}}</h1>
+        </div>
+      </div>
 </div>
 
-<div class="container">
-  Click here to get a customized welcome message 
-  <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message</button>
-</div>
-
-<div class="container" *ngIf="welcomeMessageFromService">
-    <H2>Your Customized Welcome Message</H2>
-    {{welcomeMessageFromService}}
+<div class="row">
+  <div class="col-sm-12">
+      <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink = "/todos">All Todo's</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/upcoming">Upcoming</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/completed">Completed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/others">Others</a>
+          </li>
+        </ul>
   </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card border-success mb-3">
+            <div class="card-header bg-transparent border-success text-success">
+                <h4>{{changeStateName()}}</h4>
+            </div>
+            <div class="card-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                 sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                   ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                      occaecat cupidatat non proident, sunt in culpa qui officia
+                       deserunt mollit anim id est laborum.
+            </div>
+            <div class="card-footer bg-transparent ">
+              <div class="button-success">
+                <button type="button" class="btn btn-outline-danger btn-lg" (click) = "changeState()">MARK AS DONE</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>TODO</h4>
+                </div>
+                <div class="card-body bg-primary text-white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                       ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit
+                         esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                          occaecat cupidatat non proident, sunt in culpa qui officia
+                           deserunt mollit anim id est laborum.
+                </div>
+                <div class="card-footer bg-primary text-white">
+                  <div class="button-success">
+                    <button type="button" class="btn btn-outline-danger btn-lg">MARK AS DONE</button>
+                  </div>
+                </div>
+                
+              </div>
+        </div>
+      
+        <div class="col-sm-4">
+            <div class="card border-warning mb-3">
+                <div class="card-header bg-transparent border-warning text-warning">
+                    <h4>DOING</h4>
+                </div>
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                       ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit
+                         esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                          occaecat cupidatat non proident, sunt in culpa qui officia
+                           deserunt mollit anim id est laborum.
+                </div>
+                <div class="card-footer bg-transparent border-warning">
+                  <div class="button-success">
+                    <button type="button" class="btn btn-outline-danger btn-lg">MARK AS DONE</button>
+                  </div>
+                </div>
+    
+              </div>
+          </div>
+      </div>
+      
+</div>

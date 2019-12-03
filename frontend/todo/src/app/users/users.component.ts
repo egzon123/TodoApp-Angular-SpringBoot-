@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersDataService } from '../service/data/users-data.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export class User{
   constructor(
@@ -12,10 +12,8 @@ export class User{
     public password:String,
     public roles:Set<String>
   ){
- 
-  }
-
-  
+    
+    }
 }
 
 @Component({
@@ -25,18 +23,24 @@ export class User{
 })
 export class UsersComponent implements OnInit {
 
+  id: number;
  users:User[]
  message:String
+ _search: string;
 
   constructor(
     private userService:UsersDataService,
     private authservice:BasicAuthenticationService,
+    private route: ActivatedRoute,
     private router:Router
     ) { }
 
   ngOnInit() {
     this.refreshUsers()
+    this.id = this.route.snapshot.params['id'];
   }
+
+  
 
   refreshUsers(){
     this.userService.retriveAllUsers().subscribe(
@@ -49,8 +53,8 @@ export class UsersComponent implements OnInit {
     )
   }
 
-  addUser() {
-    this.router.navigate(['users',-1])
+  addUsers() {
+    this.router.navigate(['addUsers'])
   }
 
   deleteUser(id) {
@@ -65,5 +69,23 @@ export class UsersComponent implements OnInit {
     )
   }
 
+  get search(): string{
+    return this._search;
+   }
+ 
+   set search(value: string){
+     this._search = value;
+   }
+ 
+   filterUsers() {
+     if(this.search){
+       return this.users.filter((item)=>{
+         const todo = item.name+' '+item.username+' '+ item.email;
+         return todo.toLowerCase().includes(this.search.toLowerCase());
+       })
+     }else{
+       return this.users;
+     }
+   }
 
 }

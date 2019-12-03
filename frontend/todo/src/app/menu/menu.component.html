@@ -1,3 +1,7 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div><a routerLink="/welcome/in28minutes" class="navbar-brand">
@@ -14,12 +18,17 @@
             <li><a *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
             <li><a *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/signup" class="nav-link">Sign Up</a></li>
         </ul>
-        
+
+        <span style="color: white;
+             margin: 0px 10px 0px 0px;
+              font-size: 20px;" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()">Welcome</span>
         <div class="dropdown" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()">
-                <button class="dropbtn">{{this.fullName}}</button>
-                <div class="dropdown-content">
-                        <a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a>
-                </div>
+            
+              <button class="dropbtn">{{this.fullName}} <i class="fa fa-user" *ngIf="!this.isAdmin"></i>
+                <i *ngIf="this.isAdmin" class = "fas fa-user-cog"></i></button>
+            <div class="dropdown-content">
+                <a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a>
+            </div>
       </div>
               
     </nav>

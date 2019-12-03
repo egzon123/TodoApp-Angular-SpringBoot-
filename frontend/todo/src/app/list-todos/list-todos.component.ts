@@ -9,7 +9,7 @@ export class Todo {
     public description: string,
     public done: boolean,
     public targetDate: Date,
-    public username:String
+    public username:String,
   ){
 
   }
@@ -21,32 +21,37 @@ export class Todo {
   styleUrls: ['./list-todos.component.css']
 })
 export class ListTodosComponent implements OnInit {
-
+  
+  _search: string;
   todos: Todo[]
 
-  message: string
+
+  message: string;
   isUserAdmin:boolean
 
+  
 
   constructor(
     private todoService:TodoDataService,
     private authService:BasicAuthenticationService,
     private router : Router
-  ) { }
+  ){ 
+
+  }
 
   ngOnInit() {
+    this.isUserAdmin = this.authService.getAuthenticatedUserRoles().includes("ROLE_ADMIN")
+    console.log(this.authService.getAuthenticatedUserRoles())
+    console.log(this.isUserAdmin);
+    if(this.isUserAdmin){
+      this.refreshTodosAdmin()
+    }else{
+      this.refreshTodos();
+    }
+   
+    }
 
   
-  this.isUserAdmin = this.authService.getAuthenticatedUserRoles().includes("ROLE_ADMIN")
-  console.log(this.authService.getAuthenticatedUserRoles())
-  console.log(this.isUserAdmin)
-  if(this.isUserAdmin){
-    this.refreshTodosAdmin()
-  }else{
-    this.refreshTodos();
-  }
-    
-  }
 
   refreshTodos(){
     this.todoService.retrieveAllTodos(this.authService.getAuthenticatedUser()).subscribe(
@@ -93,4 +98,24 @@ export class ListTodosComponent implements OnInit {
   addTodo() {
     this.router.navigate(['todos',-1])
   }
+  
+  get search(): string{
+   return this._search;
+  }
+
+  set search(value: string){
+    this._search = value;
+  }
+
+  filterTodos() {
+    if(this.search){
+      return this.todos.filter((item)=>{
+        const todo = item.description+' '+item.username+' '+item.done;
+        return todo.toLowerCase().includes(this.search.toLowerCase());
+      })
+    }else{
+      return this.todos;
+    }
+  }
 }
+

@@ -1,0 +1,21 @@
+.container{
+    margin: 50px 0px 0px 0px;
+}
+
+.fa-edit{
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.fa-edit:hover{
+    color: blue;
+}
+
+.fa-trash{
+    font-size: 36px;
+    cursor: pointer;
+}
+ 
+.fa-trash:hover{
+    color: red;
+}

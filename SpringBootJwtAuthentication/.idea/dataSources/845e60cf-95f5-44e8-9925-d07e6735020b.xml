@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="todo-db@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.15">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.17">
     <root id="1">
       <ServerVersion>8.0.13</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -87,7 +87,6 @@
     </schema>
     <schema id="28" parent="1" name="todo-db">
       <Current>1</Current>
-      <Visible>1</Visible>
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
     <schema id="29" parent="1" name="tododb">
