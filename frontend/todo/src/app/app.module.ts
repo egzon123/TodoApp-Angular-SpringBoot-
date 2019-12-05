@@ -22,16 +22,26 @@ import { CompletedComponent } from './completed/completed.component';
 import { OthersComponent } from './others/others.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatIcon} from '@angular/material/icon';
 // import { DetailsModal, NgbdDetailsModal } from './list-todos-details/modal-show-details.component';
 import { AddUsersComponent } from './add-users/add-users.component';
 import { ToString } from './list-todos/to-string.component';
 import { LabelComponent } from './label/label.component';
+// import { MatAutocomplete } from '@angular/material/autocomplete';
 
 
 
 @NgModule({
   declarations: [
+    // MatAutocomplete,
     LabelComponent,
+    MatIcon,
     AppComponent,
     WelcomeComponent,
     LoginComponent,
@@ -55,6 +65,12 @@ import { LabelComponent } from './label/label.component';
     LabelComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    MatChipsModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
     BrowserModule,
     NgSelectModule,
     FormsModule,

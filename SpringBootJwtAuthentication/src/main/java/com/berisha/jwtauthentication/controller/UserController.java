@@ -97,6 +97,8 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<User> addUser(@RequestBody User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         Role role = new Role();
         long defaultRole = 1;
         role.setId(defaultRole);

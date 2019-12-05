@@ -5,6 +5,7 @@ import{ BasicAuthenticationService} from './../service/basic-authentication.serv
 import { Todo } from '../list-todos/list-todos.component';
 import { from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-todo',
@@ -15,13 +16,15 @@ export class TodoComponent implements OnInit {
 
   id:number
   todo: Todo
+  myForm: FormGroup;
 
   constructor(
     private todoService: TodoDataService,
     private authservice :BasicAuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -38,7 +41,15 @@ export class TodoComponent implements OnInit {
           )
     }
 
-    
+    this.myForm = this.fb.group({
+      description: ['', [
+        Validators.required,
+      ]],
+      date: ['', [
+        Validators.required,
+      ]]
+    });
+
   }
 
   saveTodo() {
