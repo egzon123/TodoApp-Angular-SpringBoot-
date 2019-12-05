@@ -49,9 +49,9 @@
       <h5 class="card-title">Edit Users</h5>
     </div>
     <div class="card-body">
-      <button (click)="addUsers()" style="margin: 0px 0px 20px 0px; float: left;" class="btn btn-primary"><i class="fa fa-plus" data-target="#todoModal" data-toggle="modal"></i> Add users</button>
+      <button (click)="addUsers()" style="margin: 0px 0px 20px 0px; float: left;" class="btn btn-primary"><i class="fa fa-plus" data-target="#todoModal" data-toggle="modal"></i> Add Users</button>
       <h3><input class="form-control" placeholder="Search" [(ngModel)]="search"></h3>
-      <div class="table-resposive table-hover shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="table-resposive table-hover shadow-lg mb-5 bg-white rounded" style="overflow: auto; height: 500px;">
         <table class="table">
           <caption>Edit Users</caption>
           <thead class="thead-light">

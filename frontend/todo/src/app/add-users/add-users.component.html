@@ -14,7 +14,8 @@
         <label>Password</label><input type="password" class="form-control" [(ngModel)]="user.password" ngModel [ngModelOptions]="{standalone: true}">
       </div>
     <div class="form-group">
-      <button type="submit" (ngSubmit)="addUser()">Create User</button>
+      <button class="btn btn-success" type="submit" (ngSubmit)="addUser()">Create User</button>
+      <button class="btn btn-primary ml-2" type="submit" routerLink="/users">Cancel</button>
       </div>
   </form>
 </div>

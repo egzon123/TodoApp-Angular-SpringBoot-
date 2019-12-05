@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import{ BasicAuthenticationService} from './../service/basic-authentication.service'
 import { Todo } from '../list-todos/list-todos.component';
 import { from } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todo',
@@ -19,7 +20,8 @@ export class TodoComponent implements OnInit {
     private todoService: TodoDataService,
     private authservice :BasicAuthenticationService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toast: ToastrService
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class TodoComponent implements OnInit {
             data => this.todo = data
           )
     }
+
+    
   }
 
   saveTodo() {
@@ -43,6 +47,7 @@ export class TodoComponent implements OnInit {
       this.todoService.createTodo(this.authservice.getAuthenticatedUser(), this.todo)
           .subscribe (
             data => {
+              this.toast.success(`Todo: ${this.todo.description} created successfuly.`);
               console.log(data)
               this.router.navigate(['todos'])
             }
@@ -51,6 +56,7 @@ export class TodoComponent implements OnInit {
       this.todoService.updateTodo(this.authservice.getAuthenticatedUser(), this.id, this.todo)
           .subscribe (
             data => {
+              this.toast.success(`Todo: ${this.todo.description} updated successfuly.`);
               console.log(data)
               this.router.navigate(['todos'])
             }

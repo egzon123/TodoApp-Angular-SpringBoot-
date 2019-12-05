@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../users/users.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-register',
@@ -22,7 +23,8 @@ export class UserRegisterComponent implements OnInit {
   validRegister = false;
 
   constructor(  private router: Router,
-    private basicAuthenticationService: BasicAuthenticationService) { }
+    private basicAuthenticationService: BasicAuthenticationService,
+    private toast: ToastrService) { }
 
   ngOnInit() {
     this.user = new User(0,'','','','',null);
@@ -33,13 +35,14 @@ export class UserRegisterComponent implements OnInit {
   }
 
   handleUserRegistration() {
-    console.log(this.onSubmit())
+    console.log(this.onSubmit());
+  
     this.basicAuthenticationService.executeUserRegistration(this.user.name,this.user.email,this.user.username, this.user.password)
         .subscribe(
           data => {
             console.log(data)
             // this.router.navigate(['login',data])
-            this.successfullMessage = 'Signed Up successfuly, please login !'
+            this.toast.success(`User: ${this.user.name}, successfuly added.`);
             this.invalidRegister = false 
             this.validRegister = true;     
           },

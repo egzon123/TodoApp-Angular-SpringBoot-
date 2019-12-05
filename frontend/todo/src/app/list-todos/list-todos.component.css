@@ -36,4 +36,30 @@
     font-weight: bold;
 }
 
+.fadeIn{
+    transition: all 1s ease-out;
+    opacity: 0;
+    -webkit-animation: fadeIn 1s;
+}
+.fadeIn.opacity-1{
+    opacity: 1;
+}
 
+@keyframes fadeIn{
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+table td, table th{
+    border: none;
+}
