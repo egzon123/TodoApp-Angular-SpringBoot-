@@ -36,4 +36,14 @@
     font-weight: bold;
 }
 
+table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+table td, table th{
+    border: none;
+}
+
 

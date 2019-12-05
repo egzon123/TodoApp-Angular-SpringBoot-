@@ -12,7 +12,7 @@
     <div class="form-group">
         <input type="text" class="form-control" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}">
     </div>
-      <button type="submit" (ngSubmit)="updateUser()">Update Profile</button>
+      <button type="submit" (ngSubmit)="updateUser()" class="btn btn-success">Update Profile</button>
   </form>
 
   <div class="row">
@@ -24,7 +24,7 @@
                       <input  type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" name="password">
               
                   </div>
-                    <button type="submit" (ngSubmit)="updateUserPassword()">Change Password</button>
+                    <button type="submit" (ngSubmit)="updateUserPassword()" class="btn btn-success">Change Password</button>
                 </form>
           </div>
 
@@ -39,7 +39,7 @@
                       </select>
               
                   </div>
-                    <button type="submit" (ngSubmit)="updateRole()">Add Role</button>
+                    <button type="submit" (ngSubmit)="updateRole()" class="btn btn-success">Add Role</button>
                 </form>
           </div>
 
@@ -54,13 +54,14 @@
                     </select>
             
                 </div>
-                  <button type="submit" (ngSubmit)="deleteRole()">Remove Role</button>
+                  <button type="submit" (ngSubmit)="deleteRole()" class="btn btn-success">Remove Role</button>
               </form>
         </div>
   </div>
+  <button class="btn btn-primary mt-4" routerLink="/users">Cancel</button>
   <!-- <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
   <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter valid Target Date</div>
-  <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Username</div> -->
+  <div class="aler t alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Username</div> -->
   
   <!-- <form (ngSubmit)="!todoForm.invalid && saveUser()" #todoForm="ngForm">
     <fieldset class="form-group">

@@ -36,6 +36,10 @@ export class TodoDataService {
                 , todo);
   }
 
+  // insertTodo(todo){
+  //   return this.http.post(`${TODO_JPA_API_URL}/createTodo`, todo);
+  // }
+
   createTodo(username, todo){
     return this.http.post(
               `${TODO_JPA_API_URL}/users/${username}/todos`

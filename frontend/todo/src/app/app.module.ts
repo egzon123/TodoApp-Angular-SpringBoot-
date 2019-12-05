@@ -3,7 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { NgSelectModule } from '@ng-select/ng-select';  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -24,11 +24,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 // import { DetailsModal, NgbdDetailsModal } from './list-todos-details/modal-show-details.component';
 import { AddUsersComponent } from './add-users/add-users.component';
+import { ToString } from './list-todos/to-string.component';
+import { LabelComponent } from './label/label.component';
 
 
 
 @NgModule({
   declarations: [
+    LabelComponent,
     AppComponent,
     WelcomeComponent,
     LoginComponent,
@@ -47,10 +50,14 @@ import { AddUsersComponent } from './add-users/add-users.component';
     AddUsersComponent,
     // DetailsModal,
     // NgbdDetailsModal
-    AddUsersComponent
+    AddUsersComponent,
+    ToString,
+    LabelComponent
   ],
   imports: [
     BrowserModule,
+    NgSelectModule,
+    FormsModule,
     BrowserAnimationsModule,
 	  ToastrModule.forRoot(),
     AppRoutingModule,
