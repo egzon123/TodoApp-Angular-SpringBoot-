@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import{ BasicAuthenticationService} from './../service/basic-authentication.service'
 import { log } from 'util';
 import { ToastrService } from 'ngx-toastr';
+import { Label } from '../label/label.component';
 
 export class Todo {
   constructor(
@@ -12,6 +13,8 @@ export class Todo {
     public done: boolean,
     public targetDate: Date,
     public username:String,
+    public labels,
+  
   ){
 
   }

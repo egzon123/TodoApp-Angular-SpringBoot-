@@ -1,5 +1,7 @@
 package com.berisha.jwtauthentication.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,17 +10,22 @@ import java.awt.*;
 
 @Entity
 @Data
+
 @NoArgsConstructor
 public class Label {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String name;
 
-    private Color color;
 
     @ManyToOne
+    @JsonBackReference
     private Todo todo;
+
+    public String toString(){
+        return this.name+"-";
+    }
 
 }

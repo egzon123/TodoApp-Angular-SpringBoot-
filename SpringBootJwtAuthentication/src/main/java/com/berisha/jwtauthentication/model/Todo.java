@@ -1,11 +1,13 @@
 package com.berisha.jwtauthentication.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -24,10 +26,15 @@ public class Todo {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "todo")
-	private Set<Label> labels;
+//	@JsonBackReference
+@JsonManagedReference
+	@OneToMany(mappedBy = "todo",fetch = FetchType.EAGER)
+	private List<Label> labels;
 	
-	
+
+	public String toString(){
+		return this.description;
+	}
 
 
 	

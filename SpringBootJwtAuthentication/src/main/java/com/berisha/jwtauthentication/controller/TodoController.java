@@ -1,7 +1,9 @@
 package com.berisha.jwtauthentication.controller;
 
+import com.berisha.jwtauthentication.model.Label;
 import com.berisha.jwtauthentication.model.Todo;
 import com.berisha.jwtauthentication.model.User;
+import com.berisha.jwtauthentication.repository.LabelRepository;
 import com.berisha.jwtauthentication.repository.TodoJpaRepository;
 import com.berisha.jwtauthentication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class TodoController {
 	private TodoJpaRepository todoJpaRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private LabelRepository labelRepository;
 
 	@GetMapping("/users/todos")
 	public List<Todo> getAllTodosAdmin(){
@@ -40,7 +44,9 @@ public class TodoController {
 
 	@GetMapping("/users/{username}/todos/{id}")
 	public Todo getTodo(@PathVariable String username, @PathVariable long id){
-		return todoJpaRepository.findById(id).get();
+		Todo todo= todoJpaRepository.findById(id).get();
+		System.out.println("->>>>>>>>>>>>"+todo.toString());
+		return todo;
 		//return todoService.findById(id);
 	}
 
@@ -74,18 +80,28 @@ public class TodoController {
 	public ResponseEntity<Void> createTodo(
             @PathVariable String username, @RequestBody Todo todo){
 		User user= null;
-
+		System.out.println("Inside Todo controller :>>> "+todo);
+//		System.out.println("labels ----> "+todo.getLabels().toString());
 		for(User u :userRepository.findAll()){
 
 		    if(u.getUsername().equalsIgnoreCase(username)){
 		        user = u;
             }
         }
+
+
 		//Todo createdTodo = todoService.save(todo);
 		todo.setUsername(username);
 		todo.setUser(user);
 		Todo createdTodo = todoJpaRepository.save(todo);
-		
+		if(todo.getLabels() != null){
+			for(Label label :todo.getLabels()){
+				label.setId(0);
+				label.setTodo(createdTodo);
+				labelRepository.save(label);
+			}
+
+		}
 		//Location
 		//Get current resource url
 		///{id}
