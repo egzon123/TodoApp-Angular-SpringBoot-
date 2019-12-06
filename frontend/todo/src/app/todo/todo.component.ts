@@ -5,12 +5,9 @@ import{ BasicAuthenticationService} from './../service/basic-authentication.serv
 import { Todo } from '../list-todos/list-todos.component';
 import { from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-<<<<<<< HEAD
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-=======
 import { LabelComponent } from '../label/label.component';
 import { LabelService } from '../service/data/label-data.service';
->>>>>>> 37f11461c775125c779e9741ba0968820540f00c
 
 @Component({
   selector: 'app-todo',
@@ -21,7 +18,7 @@ export class TodoComponent implements OnInit {
 
   id:number
   todo: Todo
-  myForm: FormGroup;
+  // myForm: FormGroup;
 
   constructor(
     private todoService: TodoDataService,
@@ -29,12 +26,9 @@ export class TodoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
-<<<<<<< HEAD
-    private fb: FormBuilder
-=======
+    // private fb: FormBuilder,
     private labelService:LabelService
     
->>>>>>> 37f11461c775125c779e9741ba0968820540f00c
   ) { }
 
   ngOnInit() {
@@ -51,14 +45,14 @@ export class TodoComponent implements OnInit {
           )
     }
 
-    this.myForm = this.fb.group({
-      description: ['', [
-        Validators.required,
-      ]],
-      date: ['', [
-        Validators.required,
-      ]]
-    });
+    // this.myForm = this.fb.group({
+    //   description: ['', [
+    //     Validators.required,
+    //   ]],
+    //   date: ['', [
+    //     Validators.required,
+    //   ]]
+    // });
 
   }
 
@@ -72,12 +66,13 @@ export class TodoComponent implements OnInit {
           .subscribe (
             data => {
               this.toast.success(`Todo: ${this.todo.description} created successfuly.`);
-              console.log(data)
+              console.log("data: " + data)
               this.router.navigate(['todos'])
             }
           )
     } else {
       console.log(this.todo.labels)
+      this.todo.labels = this.labelService.getSelectedLabels();
       this.todoService.updateTodo(this.authservice.getAuthenticatedUser(), this.id, this.todo)
           .subscribe (
             data => {

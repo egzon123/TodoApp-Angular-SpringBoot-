@@ -36,6 +36,12 @@ public class Todo {
 		return this.description;
 	}
 
+	public void addlabel(Label label){
+		labels.add(label);
+	}
 
+	public void removeLabel(Label label){
+		labels.remove(label);
+	}
 	
 }

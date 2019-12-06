@@ -13,10 +13,9 @@ export class Todo {
     public done: boolean,
     public targetDate: Date,
     public username:String,
-    public labels,
+    public labels
   
   ){
-
   }
 }
 
@@ -123,7 +122,7 @@ export class ListTodosComponent implements OnInit {
   filterTodos() {
     if(this.search){
       return this.todos.filter((item)=>{
-        const todo = item.description+' '+item.username+' '+item.done;
+        const todo = item.description+' '+item.username+' '+item.done+ ' ' + JSON.stringify(item['labels']);
         return todo.toLowerCase().includes(this.search.toLowerCase());
       })
     }else{

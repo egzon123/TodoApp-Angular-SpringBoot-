@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class TodoController {
-	
+
 
 
 	@Autowired
@@ -35,7 +35,7 @@ public class TodoController {
 		//return todoService.findAll();
 	}
 
-	
+
 	@GetMapping("/users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username){
 		return todoJpaRepository.findByUsername(username);
@@ -53,26 +53,26 @@ public class TodoController {
 	//DELETE /users/{username}/todos/{id}
 	@DeleteMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(
-            @PathVariable String username, @PathVariable long id){
-		
+			@PathVariable String username, @PathVariable long id){
+
 		//Todo todo = todoService.deleteById(id);
 		todoJpaRepository.deleteById(id);
-		
+
 		return ResponseEntity.noContent().build();
 		//return ResponseEntity.notFound().build();
 	}
-	
+
 
 	//Edit/Update a Todo
 	//PUT /users/{user_name}/todos/{todo_id}
 	@PutMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(
-            @PathVariable String username,
-            @PathVariable long id, @RequestBody Todo todo){
-		
+			@PathVariable String username,
+			@PathVariable long id, @RequestBody Todo todo){
+
 		//Todo todoUpdated = todoService.save(todo);
 		Todo todoUpdated = todoJpaRepository.save(todo);
-		
+
 		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 	}
 
@@ -81,19 +81,19 @@ public class TodoController {
 //		todoJpaRepository.save(todo);
 //		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 //	}
-	
+
 	@PostMapping("/users/{username}/todos")
 	public ResponseEntity<Void> createTodo(
-            @PathVariable String username, @RequestBody Todo todo){
+			@PathVariable String username, @RequestBody Todo todo){
 		User user= null;
 		System.out.println("Inside Todo controller :>>> "+todo);
 //		System.out.println("labels ----> "+todo.getLabels().toString());
 		for(User u :userRepository.findAll()){
 
-		    if(u.getUsername().equalsIgnoreCase(username)){
-		        user = u;
-            }
-        }
+			if(u.getUsername().equalsIgnoreCase(username)){
+				user = u;
+			}
+		}
 
 
 		//Todo createdTodo = todoService.save(todo);
@@ -113,8 +113,8 @@ public class TodoController {
 		///{id}
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
-		
+
 		return ResponseEntity.created(uri).build();
 	}
-		
+
 }
