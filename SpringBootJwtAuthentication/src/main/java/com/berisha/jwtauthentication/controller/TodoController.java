@@ -69,6 +69,12 @@ public class TodoController {
 		
 		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 	}
+
+//	@PostMapping("/createTodo")
+//	public ResponseEntity<Todo> createTodo(@RequestBody Todo todo){
+//		todoJpaRepository.save(todo);
+//		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
+//	}
 	
 	@PostMapping("/users/{username}/todos")
 	public ResponseEntity<Void> createTodo(
