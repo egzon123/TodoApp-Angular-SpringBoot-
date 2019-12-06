@@ -5,7 +5,12 @@ import{ BasicAuthenticationService} from './../service/basic-authentication.serv
 import { Todo } from '../list-todos/list-todos.component';
 import { from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+<<<<<<< HEAD
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+=======
+import { LabelComponent } from '../label/label.component';
+import { LabelService } from '../service/data/label-data.service';
+>>>>>>> 37f11461c775125c779e9741ba0968820540f00c
 
 @Component({
   selector: 'app-todo',
@@ -24,7 +29,12 @@ export class TodoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
+<<<<<<< HEAD
     private fb: FormBuilder
+=======
+    private labelService:LabelService
+    
+>>>>>>> 37f11461c775125c779e9741ba0968820540f00c
   ) { }
 
   ngOnInit() {
@@ -32,7 +42,7 @@ export class TodoComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
     
-    this.todo = new Todo(this.id,'',false,new Date(),'');
+    this.todo = new Todo(this.id,'',false,new Date(),'',null);
     
     if(this.id!=-1) {
       this.todoService.retrieveTodo(this.authservice.getAuthenticatedUser(), this.id)
@@ -55,6 +65,9 @@ export class TodoComponent implements OnInit {
   saveTodo() {
    
     if(this.id == -1) { //=== ==
+
+       this.todo.labels = this.labelService.getSelectedLabels();
+      console.log("inside todo component:->:",this.todo )
       this.todoService.createTodo(this.authservice.getAuthenticatedUser(), this.todo)
           .subscribe (
             data => {
@@ -64,6 +77,7 @@ export class TodoComponent implements OnInit {
             }
           )
     } else {
+      console.log(this.todo.labels)
       this.todoService.updateTodo(this.authservice.getAuthenticatedUser(), this.id, this.todo)
           .subscribe (
             data => {
