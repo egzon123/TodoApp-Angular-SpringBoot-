@@ -22,6 +22,7 @@ public class Todo {
 	private String description;
 	private Date targetDate;
 	private boolean isDone;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

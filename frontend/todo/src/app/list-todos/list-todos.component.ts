@@ -28,6 +28,7 @@ export class Todo {
 export class ListTodosComponent implements OnInit {
   
   _search: string;
+  label_search:string;
   todos: Todo[]
   message: string;
   isUserAdmin:boolean
@@ -120,6 +121,15 @@ export class ListTodosComponent implements OnInit {
     this._search = value;
   }
 
+    
+  get getLabel(): string{
+    return this.label_search;
+   }
+ 
+   set setLabel(value: string){
+     this.label_search = value;
+   }
+
   filterTodos() {
     if(this.search){
       return this.todos.filter((item)=>{
@@ -131,6 +141,23 @@ export class ListTodosComponent implements OnInit {
     }
   }
 
+  filterByLabel() {
+    if(this.label_search){
+      return this.todos.filter((item)=>{
+        var labelsString:string=' '
+            for(let label of item.labels){
+        
+              labelsString=  labelsString.concat(' '+label.name)
+              
+              
+            }
+            console.log(labelsString)
+            return labelsString.toLowerCase().includes(this.getLabel.toLowerCase());
+      })
+    }else{
+      return this.todos;
+    }
+  }
   toggleAddTodo(){
     this.showAddTodo = !this.showAddTodo;
   }
