@@ -27,7 +27,7 @@ public class Todo {
 	private User user;
 
 //	@JsonBackReference
-@JsonManagedReference
+	@JsonManagedReference
 	@OneToMany(mappedBy = "todo",fetch = FetchType.EAGER)
 	private List<Label> labels;
 	

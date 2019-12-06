@@ -29,7 +29,7 @@
         required ="required" minlength="4" name="username" placeholder="Username" [(ngModel)]="user.username" >
         <div class="alert alert-warning" *ngIf="username.touched && username.invalid">Enter min 4 characters for username</div>
 
-        <input type="text"  class="form-control fadeIn second" #password ="ngModel"
+        <input type="password" class="form-control fadeIn second" #password ="ngModel"
         required ="required" minlength="6" name="password" placeholder="Password" [(ngModel)]="user.password" >
         <div class="alert alert-warning" *ngIf="password.touched && password.invalid">Enter min 6 characters for password</div>
 

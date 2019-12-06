@@ -83,6 +83,7 @@
               <th scope="col">Target Date</th>
               <th scope="col">is Completed?</th>
               <th scope="col" *ngIf='isUserAdmin'>Username</th>
+              <th scope="col" >Labels</th>
               <th scope="col" >Actions</th>
             </tr>
           </thead>
@@ -95,6 +96,10 @@
               <!-- <td>{{todo.done}}</td> -->
               <td>{{todo.done | toString}}</td>
               <td *ngIf='isUserAdmin'>{{todo.username}}</td>
+              <td ><div *ngFor="let label of todo.labels" style="display: inline;">
+                  <label style="margin-right: 10px; background-color:bisque;"  class="rounded-sm">{{label.name}}</label>
+                </div></td>
+               
               <td style="padding:12px 0px 12px 0px;">
                
                 <div class="dropdown">

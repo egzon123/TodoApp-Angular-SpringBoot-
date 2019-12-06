@@ -41,10 +41,11 @@ export class UserRegisterComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data)
-            // this.router.navigate(['login',data])
+       
             this.toast.success(`User: ${this.user.name}, successfuly added.`);
             this.invalidRegister = false 
-            this.validRegister = true;     
+            this.validRegister = true;    
+            this.router.navigate(['login',data]) 
           },
           error => {
             if(error.error != null){
