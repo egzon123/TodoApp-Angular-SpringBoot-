@@ -81,6 +81,7 @@
           <thead class="thead-light" style="position: sticky;">
             <tr>
               <th scope="col">Description</th>
+     
               <th scope="col">Target Date</th>
               <th scope="col">is Completed?</th>
               <th scope="col" *ngIf='isUserAdmin'>Username</th>
@@ -93,6 +94,7 @@
           <tbody>
             <tr *ngFor="let todo of filterByLabel()">
               <td>{{todo.description}}</td>
+             
               <td>{{todo.targetDate | date | uppercase}}</td>
               <!-- <td>{{todo.done}}</td> -->
               <td>{{todo.done | toString}}</td>

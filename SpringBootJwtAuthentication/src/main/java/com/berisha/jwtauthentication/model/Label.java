@@ -19,7 +19,6 @@ public class Label {
 
     private String name;
 
-
     @ManyToOne
     @JsonBackReference
     private Todo todo;

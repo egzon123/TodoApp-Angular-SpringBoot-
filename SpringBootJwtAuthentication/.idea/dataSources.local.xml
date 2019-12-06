@@ -9,7 +9,11 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:todo-db</introspection-schemas>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="todo-db" />
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>

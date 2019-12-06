@@ -31,3 +31,32 @@
   </form>  
 </div>
 
+<!-- <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <form [formGroup] = "myForm" (ngSubmit) = "saveTodo()">
+          <div class="col-lg-12 p-0">
+            <mat-form-field>
+              <input matInput placeholder="Dsecription" formControlName="description">
+              <mat-error *ngIf = "description.hasError('required')">
+                Please provide a dsecription.
+              </mat-error>
+              <mat-error *ngIf = "description.hasError('maxlength')">The des is too long!</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <fieldset class="form-group">
+              <label>Target Date</label>
+              <input type="date"
+              formControlName="date"
+              class="form-control" name="date" required="required" >
+          </fieldset>
+        </form>
+
+        <div class="col-lg-12 p-0 mt-4">
+            <button mat-raised-button color="primary" type="submit" [disabled] = "myForm.invalid">Save</button>
+            <button class="ml-4" mat-button routerLink = "/todos">Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div> -->

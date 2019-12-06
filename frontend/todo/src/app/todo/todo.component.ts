@@ -5,6 +5,7 @@ import{ BasicAuthenticationService} from './../service/basic-authentication.serv
 import { Todo } from '../list-todos/list-todos.component';
 import { from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LabelComponent } from '../label/label.component';
 import { LabelService } from '../service/data/label-data.service';
 
@@ -17,6 +18,7 @@ export class TodoComponent implements OnInit {
 
   id:number
   todo: Todo
+  // myForm: FormGroup;
 
   constructor(
     private todoService: TodoDataService,
@@ -24,6 +26,7 @@ export class TodoComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
+    // private fb: FormBuilder,
     private labelService:LabelService
     
   ) { }
@@ -42,7 +45,15 @@ export class TodoComponent implements OnInit {
           )
     }
 
-    
+    // this.myForm = this.fb.group({
+    //   description: ['', [
+    //     Validators.required,
+    //   ]],
+    //   date: ['', [
+    //     Validators.required,
+    //   ]]
+    // });
+
   }
 
   saveTodo() {
@@ -55,12 +66,13 @@ export class TodoComponent implements OnInit {
           .subscribe (
             data => {
               this.toast.success(`Todo: ${this.todo.description} created successfuly.`);
-              console.log(data)
+              console.log("data: " + data)
               this.router.navigate(['todos'])
             }
           )
     } else {
       console.log(this.todo.labels)
+      this.todo.labels = this.labelService.getSelectedLabels();
       this.todoService.updateTodo(this.authservice.getAuthenticatedUser(), this.id, this.todo)
           .subscribe (
             data => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersDataService } from '../service/data/users-data.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from "ngx-toastr"
 
 export class User{
   constructor(
@@ -32,7 +33,8 @@ export class UsersComponent implements OnInit {
     private userService:UsersDataService,
     private authservice:BasicAuthenticationService,
     private route: ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private toast: ToastrService
     ) { }
 
   ngOnInit() {
@@ -62,7 +64,7 @@ export class UsersComponent implements OnInit {
     this.userService.deleteUser(id).subscribe (
       response => {
         console.log(response);
-        this.message = `Delete of User ${id} Successful!`;
+        this.toast.warning(`User with ID: ${id} was deleted`);
         this.refreshUsers()
         
       }

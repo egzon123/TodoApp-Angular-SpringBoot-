@@ -36,7 +36,6 @@ export class UserRegisterComponent implements OnInit {
 
   handleUserRegistration() {
     console.log(this.onSubmit());
-  
     this.basicAuthenticationService.executeUserRegistration(this.user.name,this.user.email,this.user.username, this.user.password)
         .subscribe(
           data => {

@@ -23,6 +23,4 @@ import { Label } from 'src/app/label/label.component';
       getSelectedLabels(){
           return this.labels;
       }
-
-      
   }
