@@ -17,6 +17,7 @@
     <!--Your comment-->
 <!--    another Commit-->
 <!--    test comment-->
+<!--    final comment-->
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
