@@ -1,0 +1,65 @@
+.container{
+    margin: 50px 0px 0px 0px;
+}
+
+.fa-edit{
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.fa-edit:hover{
+    color: blue;
+}
+
+.fa-trash{
+    font-size: 36px;
+    cursor: pointer;
+}
+ 
+.fa-trash:hover{
+    color: red;
+}
+
+.delete:hover{
+    color: red;
+}
+
+.update:hover{
+    color: blue;
+}
+
+.dropdown-item:hover{
+    cursor: pointer;
+}
+
+.dropdown-item:hover{
+    font-weight: bold;
+}
+
+.fadeIn{
+    transition: all 1s ease-out;
+    opacity: 0;
+    -webkit-animation: fadeIn 1s;
+}
+.fadeIn.opacity-1{
+    opacity: 1;
+}
+
+@keyframes fadeIn{
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+table td, table th{
+    border: none;
+}

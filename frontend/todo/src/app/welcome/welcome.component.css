@@ -1,0 +1,37 @@
+.container-fluid{
+    margin: 20px 0px 0px 0px;
+}
+
+.row{
+    margin: 10px 0px 10px 0px;
+}
+
+ul.nav{
+    border-bottom: 2px solid #cecece;
+    min-height: 50px;
+}
+
+.nav-item:hover{
+    border-bottom: 5px solid goldenrod;
+    margin: 0px;
+    color: goldenrod;
+}
+
+.card-footer{
+    border: none;
+}
+
+.button-success button{
+    border-radius: 50px;
+}
+
+
+.greet-container i.fa { transform: scale(1.5,1); }
+
+.greet-container i.fas {
+    display: inline-block;
+    border-radius: 100px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
+  
+  }

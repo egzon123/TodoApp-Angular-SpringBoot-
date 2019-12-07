@@ -1,0 +1,14 @@
+<ng-select [items]="labelNames"
+           [addTag]="addTagFn"
+           [hideSelected]="true"
+           multiple="true"
+           bindLabel="name"
+           
+           [(ngModel)]="selectedLabels">
+           <!-- <ng-template ng-label-tmp let-item="item">
+            <img height="15" width="15" [src]="item.avatar" style="margin-right: 10px;"/>
+           
+            <b >{{item.name}}</b>
+        </ng-template> -->
+          
+</ng-select>

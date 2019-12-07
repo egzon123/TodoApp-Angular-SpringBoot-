@@ -107,4 +107,12 @@ public class User{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public void addRole(Role role){
+        roles.add(role);
+    }
+
+    public void removeRole(Role role){
+        roles.remove(role);
+    }
 }

@@ -1,23 +1,17 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
    
     <div class="alert alert-warning" *ngIf='invalidRegister'>{{errorMessage}}</div>
-    <div class="alert alert-success" *ngIf='validRegister'>{{successfullMessage}}</div>
-    <div class="alert alert-warning" *ngIf="this.emptyValues">Enter valid values</div>
+    <!-- <div class="alert alert-success" *ngIf='validRegister'>{{successfullMessage}}</div> -->
    
 
     
     <h4>Sign Up</h4>
     <br>
     <!-- Login Form -->
-    <form  #userForm="ngForm" (ngSubmit)="!userForm.invalid &&  handleUserRegistration()" required="required">
+    <form  #userForm="ngForm" (ngSubmit)="!userForm.invalid &&  handleUserRegistration()">
 
         <input type="text"  class="form-control fadeIn second" #name ="ngModel"
         required ="required" minlength="4" name="name" placeholder="Full Name" [(ngModel)]="user.name" >
@@ -30,11 +24,11 @@
         required ="required" minlength="4" name="username" placeholder="Username" [(ngModel)]="user.username" >
         <div class="alert alert-warning" *ngIf="username.touched && username.invalid">Enter min 4 characters for username</div>
 
-        <input type="password"  class="form-control fadeIn second" #password ="ngModel"
+        <input type="password" class="form-control fadeIn second" #password ="ngModel"
         required ="required" minlength="6" name="password" placeholder="Password" [(ngModel)]="user.password" >
         <div class="alert alert-warning" *ngIf="password.touched && password.invalid">Enter min 6 characters for password</div>
 
-      <input (click) ="isFormEmpty()" type="submit" class="fadeIn fourth" value="Sign Up">
+      <input type="submit" class="fadeIn fourth" value="Sign Up">
       
     </form>
 
