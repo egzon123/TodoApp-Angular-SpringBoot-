@@ -26,6 +26,13 @@
     <label>Labels</label>
     <label-costum></label-costum>
 
+    <label>Priority</label>
+    <ng-select [items]="simpleItems"
+    [(ngModel)]="selectedSimpleItem" name="selectedSimpleItem">
+</ng-select>
+
+ 
+  <br>
     <button type="submit" class="btn btn-success">Save</button>
     <button class="btn btn-info" routerLink="/todos" style="margin-left: 15px;">Cancel</button>
   </form>  

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,15 +13,16 @@ import java.util.*;
 @Entity
 @Data
 @NoArgsConstructor
+@DynamicUpdate
 public class Todo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String username;
 	private String description;
 	private Date targetDate;
+	private int priority;
 	private boolean isDone;
 	
 	@ManyToOne

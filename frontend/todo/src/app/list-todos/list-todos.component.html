@@ -76,7 +76,7 @@
       <h3><input class="form-control" placeholder="Search by description" [(ngModel)]="search"></h3>
       <h3><input class="form-control" placeholder="Filter by label "  [(ngModel)]="label_search" ></h3>
       <div class="table-resposive table-hover shadow-lg prl-3 mb-5 bg-white rounded" style="overflow: auto; height: 500px;" >
-        <table class="table">
+        <table class="table" >
           <caption>List of To-dos</caption>
           <thead class="thead-light" style="position: sticky;">
             <tr>
@@ -86,6 +86,7 @@
               <th scope="col">is Completed?</th>
               <th scope="col" *ngIf='isUserAdmin'>Username</th>
               <th scope="col" >Labels</th>
+              <th scope="col" sortable-column="priority" sort-direction="asc">Priority</th>
               <th scope="col" >Actions</th>
             </tr>
           </thead>
@@ -102,7 +103,7 @@
               <td ><div *ngFor="let label of todo.labels" style="display: inline;">
                   <label style="margin-right: 10px; background-color:bisque;"  class="rounded-sm">{{label.name}}</label>
                 </div></td>
-               
+                <td>{{todo.priority}}</td>
               <td style="padding:12px 0px 12px 0px;">
                
                 <div class="dropdown">
@@ -128,6 +129,8 @@
             </tr>
           </tbody>
         </table>
+
+    
       </div>
     </div>
   </div>

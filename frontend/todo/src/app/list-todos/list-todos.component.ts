@@ -13,6 +13,7 @@ export class Todo {
     public done: boolean,
     public targetDate: Date,
     public username:String,
+    public priority:number,
     public labels
   
   ){
@@ -45,6 +46,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.isUserAdmin = this.authService.getAuthenticatedUserRoles().includes("ROLE_ADMIN")
     console.log(this.authService.getAuthenticatedUserRoles())
     console.log(this.isUserAdmin);
