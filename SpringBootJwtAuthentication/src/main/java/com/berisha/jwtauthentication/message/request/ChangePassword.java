@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 public class ChangePassword {
 
     @NotBlank
-    @Size(min = 6, max = 40)
+    @Size( min = 6, max = 40 )
     private String password;
-    @JsonProperty(value = "password")
+    @JsonProperty( value = "password" )
     private String newPassword;
 
     public ChangePassword() {

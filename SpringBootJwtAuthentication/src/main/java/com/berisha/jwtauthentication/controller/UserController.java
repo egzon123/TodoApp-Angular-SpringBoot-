@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin( origins = "http://localhost:4200" )
 @RestController
-@RequestMapping("/api")
+@RequestMapping( "/api" )
 public class UserController {
 
     @Autowired
@@ -37,38 +37,34 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
-    @GetMapping("/users")
-    public List<User> getAllTodosAdmin(){
+    @GetMapping( "/users" )
+    public List<User> getAllTodosAdmin() {
         return userRepository.findAll();
-
     }
 
-
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable long id){
-
-
+    @DeleteMapping( "/users/{id}" )
+    public ResponseEntity<Void> deleteUser(@PathVariable long id) {
         userRepository.deleteById(id);
 
         return ResponseEntity.noContent().build();
 
     }
 
-    @PutMapping("/user/{userId}/updateUser")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable("userId") long id){
+    @PutMapping( "/user/{userId}/updateUser" )
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable( "userId" ) long id) {
         User u = userRepository.findById(id).get();
         u = user;
         User updatedUser = userRepository.save(user);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
-    @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable long id){
+    @GetMapping( "/users/{id}" )
+    public User getUserById(@PathVariable long id) {
         return userRepository.findById(id).get();
     }
 
-    @PutMapping("/users/{userId}/roles/{roleId}/updateRole")
-    public ResponseEntity<User> updateRole(@PathVariable("userId") Long userId, @PathVariable("roleId") Long roleId){
+    @PutMapping( "/users/{userId}/roles/{roleId}/updateRole" )
+    public ResponseEntity<User> updateRole(@PathVariable( "userId" ) Long userId, @PathVariable( "roleId" ) Long roleId) {
         User user = userRepository.findById(userId).get();
         Role role = roleRepository.findById(roleId).get();
         user.addRole(role);
@@ -76,8 +72,8 @@ public class UserController {
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
-    @DeleteMapping("/users/{userId}/roles/{roleId}/deleteRole")
-    public ResponseEntity<User> deleteRoleFromUser(@PathVariable("userId") Long userId, @PathVariable("roleId") Long roleId){
+    @DeleteMapping( "/users/{userId}/roles/{roleId}/deleteRole" )
+    public ResponseEntity<User> deleteRoleFromUser(@PathVariable( "userId" ) Long userId, @PathVariable( "roleId" ) Long roleId) {
         User user = userRepository.findById(userId).get();
         Role role = roleRepository.findById(roleId).get();
         user.removeRole(role);
@@ -85,8 +81,8 @@ public class UserController {
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/user/{userId}/changePassword")
-    public ResponseEntity<User> updateUserPassword(@PathVariable("userId") Long userId, @RequestBody ChangePassword changePassword){
+    @PutMapping( value = "/user/{userId}/changePassword" )
+    public ResponseEntity<User> updateUserPassword(@PathVariable( "userId" ) Long userId, @RequestBody ChangePassword changePassword) {
         User user = userRepository.findById(userId).get();
         String encodedPassword = passwordEncoder.encode(changePassword.getNewPassword());
         user.setPassword(encodedPassword);
@@ -95,8 +91,8 @@ public class UserController {
     }
 
 
-    @PostMapping("/users")
-    public ResponseEntity<User> addUser(@RequestBody User user){
+    @PostMapping( "/users" )
+    public ResponseEntity<User> addUser(@RequestBody User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         Role role = new Role();

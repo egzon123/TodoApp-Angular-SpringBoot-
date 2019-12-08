@@ -6,22 +6,22 @@ import javax.validation.constraints.*;
 
 public class SignUpForm {
     @NotBlank
-    @Size(min = 4, max = 50)
+    @Size( min = 4, max = 50 )
     private String name;
 
     @NotBlank
-    @Size(min = 4       , max = 50)
+    @Size( min = 4, max = 50 )
     private String username;
 
     @NotBlank
-    @Size(max = 60)
+    @Size( max = 60 )
     @Email
     private String email;
-    
+
     private Set<String> role;
-    
+
     @NotBlank
-    @Size(min = 6, max = 40)
+    @Size( min = 6, max = 40 )
     private String password;
 
     public String getName() {
@@ -55,12 +55,12 @@ public class SignUpForm {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public Set<String> getRole() {
-    	return this.role;
+        return this.role;
     }
-    
+
     public void setRole(Set<String> role) {
-    	this.role = role;
+        this.role = role;
     }
 }

@@ -29,9 +29,9 @@ import com.berisha.jwtauthentication.model.RoleName;
 import com.berisha.jwtauthentication.model.User;
 import com.berisha.jwtauthentication.repository.RoleRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin( origins = "http://localhost:4200" )
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping( "/api/auth" )
 public class AuthRestAPIs {
 
     @Autowired
@@ -49,7 +49,7 @@ public class AuthRestAPIs {
     @Autowired
     JwtProvider jwtProvider;
 
-    @PostMapping("/signin")
+    @PostMapping( "/signin" )
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -65,14 +65,14 @@ public class AuthRestAPIs {
         return ResponseEntity.ok(new JwtResponse(jwt));
     }
 
-    @PostMapping("/signup")
+    @PostMapping( "/signup" )
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<String>("Fail -> Username is already taken!",
                     HttpStatus.BAD_REQUEST);
         }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return new ResponseEntity<String>("Fail -> Email is already in use!",
                     HttpStatus.BAD_REQUEST);
         }
@@ -84,9 +84,9 @@ public class AuthRestAPIs {
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
-        if(strRoles != null){
+        if (strRoles != null) {
             strRoles.forEach(role -> {
-                switch(role) {
+                switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
@@ -105,14 +105,13 @@ public class AuthRestAPIs {
                         roles.add(userRole);
                 }
             });
-        }else{
+        } else {
             Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+                    .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
             roles.add(userRole);
         }
 
 
-        
         user.setRoles(roles);
         userRepository.save(user);
 

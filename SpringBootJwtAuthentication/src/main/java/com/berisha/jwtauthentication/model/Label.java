@@ -14,7 +14,7 @@ import java.awt.*;
 @NoArgsConstructor
 public class Label {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private int id;
 
     private String name;
@@ -23,8 +23,8 @@ public class Label {
     @JsonBackReference
     private Todo todo;
 
-    public String toString(){
-        return this.name+"-";
+    public String toString() {
+        return this.name + "-";
     }
 
 }
