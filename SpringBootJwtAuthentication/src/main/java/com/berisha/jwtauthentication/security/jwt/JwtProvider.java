@@ -18,28 +18,28 @@ public class JwtProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    @Value("${berisha.app.jwtSecret}")
+    @Value( "${berisha.app.jwtSecret}" )
     private String jwtSecret;
 
-    @Value("${berisha.app.jwtExpiration}")
+    @Value( "${berisha.app.jwtExpiration}" )
     private int jwtExpiration;
 
     public String generateJwtToken(Authentication authentication) {
 
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
-        Map<String,Object> claims = new HashMap<>();
+        Map<String, Object> claims = new HashMap<>();
 
 
         return Jwts.builder()
-		                .setSubject((userPrincipal.getUsername()))
-                        .claim("roles",userPrincipal.getAuthorities())
-                        .claim("fullname",userPrincipal.getName())
-		                .setIssuedAt(new Date())
-		                .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
-		                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-		                .compact();
+                .setSubject((userPrincipal.getUsername()))
+                .claim("roles", userPrincipal.getAuthorities())
+                .claim("fullname", userPrincipal.getName())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpiration * 1000))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
     }
-    
+
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
@@ -55,14 +55,14 @@ public class JwtProvider {
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty -> Message: {}", e);
         }
-        
+
         return false;
     }
-    
+
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser()
-			                .setSigningKey(jwtSecret)
-			                .parseClaimsJws(token)
-			                .getBody().getSubject();
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody().getSubject();
     }
 }

@@ -15,36 +15,36 @@ import java.util.*;
 @NoArgsConstructor
 @DynamicUpdate
 public class Todo {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String username;
-	private String description;
-	private Date targetDate;
-	private int priority;
-	private boolean isDone;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
 
-//	@JsonBackReference
-	@JsonManagedReference
-	@OneToMany(mappedBy = "todo",fetch = FetchType.EAGER)
-	private List<Label> labels;
-	
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Long id;
+    private String username;
+    private String description;
+    private Date targetDate;
+    private int priority;
+    private boolean isDone;
 
-	public String toString(){
-		return this.description;
-	}
+    @ManyToOne
+    @JoinColumn( name = "user_id" )
+    private User user;
 
-	public void addlabel(Label label){
-		labels.add(label);
-	}
+    //	@JsonBackReference
+    @JsonManagedReference
+    @OneToMany( mappedBy = "todo", fetch = FetchType.EAGER )
+    private List<Label> labels;
 
-	public void removeLabel(Label label){
-		labels.remove(label);
-	}
-	
+
+    public String toString() {
+        return this.description;
+    }
+
+    public void addlabel(Label label) {
+        labels.add(label);
+    }
+
+    public void removeLabel(Label label) {
+        labels.remove(label);
+    }
+
 }

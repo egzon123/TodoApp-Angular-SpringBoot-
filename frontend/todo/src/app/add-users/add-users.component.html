@@ -1,72 +1,80 @@
-<!-- <div class="container">
-  <form action="" #f="ngForm" (ngSubmit)="addUser()" class="mt-4" *ngIf="user">
-      <label><h3>Create User</h3></label>
-    <div class="form-group">
-      <label>Name</label><input required type="text" class="form-control" [(ngModel)]="user.name" ngModel [ngModelOptions]="{standalone: true}">
-    </div> 
-    <div class="form-group">
-      <label>Username</label><input type="text" class="form-control" [(ngModel)]="user.username" ngModel [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
-      <label>E-Mail</label><input type="text" class="form-control" [(ngModel)]="user.email" ngModel [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
-        <label>Password</label><input type="password" class="form-control" [(ngModel)]="user.password" ngModel [ngModelOptions]="{standalone: true}">
-      </div>
-    <div class="form-group">
-      <button class="btn btn-success" type="submit" (ngSubmit)="addUser()">Create User</button>
-      <button class="btn btn-primary ml-2" type="submit" routerLink="/users">Cancel</button>
-      </div>
-  </form>
-</div> -->
-
 <div class="container mt-5">
   <div class="row">
     <div class="col-lg-12">
-      <form [formGroup] = "myForm" (ngSubmit) = "addUser()">
+      <form [formGroup]="myForm" (ngSubmit)="addUser()">
         <div class="col-lg-12 p-0">
           <mat-form-field>
-            <input matInput placeholder="Full Name" formControlName="name">
-            <mat-error *ngIf = "name.hasError('required') || name.hasError('minlength')">
+            <input matInput placeholder="Full Name" formControlName="name" />
+            <mat-error
+              *ngIf="name.hasError('required') || name.hasError('minlength')"
+            >
               Please provide a name with more than 5 character.
             </mat-error>
-            <mat-error *ngIf = "name.hasError('maxlength')">The name is too long!</mat-error>
+            <mat-error *ngIf="name.hasError('maxlength')"
+              >The name is too long!</mat-error
+            >
           </mat-form-field>
         </div>
 
         <div class="col-lg-12 p-0 mt-4">
           <mat-form-field>
-            <input matInput placeholder="Username" formControlName="username">
-            <mat-error *ngIf = "username.hasError('required') || username.hasError('minlength')">
-                Please provide a username with more than 3 character.
-              </mat-error>
-              <mat-error *ngIf = "username.hasError('maxlength')">The username is too long!</mat-error>
+            <input matInput placeholder="Username" formControlName="username" />
+            <mat-error
+              *ngIf="
+                username.hasError('required') || username.hasError('minlength')
+              "
+            >
+              Please provide a username with more than 3 character.
+            </mat-error>
+            <mat-error *ngIf="username.hasError('maxlength')"
+              >The username is too long!</mat-error
+            >
           </mat-form-field>
         </div>
 
         <div class="col-lg-12 p-0 mt-4">
           <mat-form-field>
-            <input matInput placeholder="E-Mail" formControlName="email">
-            <mat-error *ngIf = "email.hasError('required')">
-                Please provide an email.
-              </mat-error>
-              <mat-error *ngIf = "email.hasError('pattern')">This email sucks!</mat-error>
+            <input matInput placeholder="E-Mail" formControlName="email" />
+            <mat-error *ngIf="email.hasError('required')">
+              Please provide an email.
+            </mat-error>
+            <mat-error *ngIf="email.hasError('pattern')"
+              >This email sucks!</mat-error
+            >
           </mat-form-field>
         </div>
 
         <div class="col-lg-12 p-0 mt-4">
           <mat-form-field>
-            <input type='password' matInput placeholder="Password" formControlName="password">
-            <mat-error *ngIf = "password.hasError('required') || password.hasError('minlength')">
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="
+                password.hasError('required') || password.hasError('minlength')
+              "
+            >
               Provide a password with more than 5 characters... Lazy
             </mat-error>
-            <mat-error *ngIf = "password.hasError('maxlength')">The password is too long!</mat-error>
+            <mat-error *ngIf="password.hasError('maxlength')"
+              >The password is too long!</mat-error
+            >
           </mat-form-field>
         </div>
 
         <div class="col-lg-12 p-0 mt-4">
-          <button mat-raised-button color="primary" type="submit" [disabled] = "myForm.invalid">Create User</button>
-          <button class="ml-4" mat-button routerLink = "/users">Cancel</button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="myForm.invalid"
+          >
+            Create User
+          </button>
+          <button class="ml-4" mat-button routerLink="/users">Cancel</button>
         </div>
       </form>
     </div>
