@@ -3,6 +3,7 @@ import { User } from '../users/users.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersDataService } from '../service/data/users-data.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -13,14 +14,19 @@ export class UserComponent implements OnInit {
   id:number;
   user:any;
   role: number;
-  password: string;
+  _password: string;
   removeRole: number;
+  profileForm: FormGroup;
+  passwordForm: FormGroup;
+  updateRoleForm: FormGroup;
+  removeRoleForm: FormGroup;
   
   constructor(
     private userService:UsersDataService,
     private route:ActivatedRoute,
     private router:Router,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -29,6 +35,59 @@ export class UserComponent implements OnInit {
 
     this.user = new User(this.id,'','','','',null);
     this.getUserById();
+
+    this.profileForm = this.fb.group({
+      name: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]],
+      username: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(10)
+      ]],
+      email: ['', [
+        Validators.required,
+        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
+      ]]
+    });
+
+    this.passwordForm = this.fb.group({
+      password: ['', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(15),
+      ]]
+    });
+
+    this.updateRoleForm = this.fb.group({
+      role: ['', [
+        Validators.required
+      ]]
+    });
+
+    this.removeRoleForm = this.fb.group({
+      removeRole: ['', [
+        Validators.required
+      ]]
+    });
+  }
+
+  get name(){
+    return this.profileForm.get('name');
+  }
+
+  get username(){
+    return this.profileForm.get('username');
+  }
+
+  get email(){
+    return this.profileForm.get('email');
+  }
+
+  get password(){
+    return this.passwordForm.get('password');
   }
 
   saveUser(){
@@ -41,19 +100,6 @@ export class UserComponent implements OnInit {
       )
     }
   }
-
-  // onSubmit(){
-  //   const body = {
-  //     name: this.user.name,
-  //     email: this.user.email,
-  //     username: this.user.username,
-  //     password: this.user.password,
-  //     role: this.user.role
-  //   }
-
-  //   console.log(body);
-    
-  // }
 
   updateUser(){
     console.log(this.user);
@@ -71,7 +117,7 @@ export class UserComponent implements OnInit {
         this.toastr.success("Role successfully updated.");
         console.log(data)
         this.router.navigate(['users']);
-      }
+      }      
     )
   }
 
@@ -86,8 +132,8 @@ export class UserComponent implements OnInit {
   }
 
   updateUserPassword(){
-    console.log('password', this.password);
-    this.userService.updateUserPassword(this.id, this.password).subscribe(
+    console.log('password', this._password);
+    this.userService.updateUserPassword(this.id, this._password).subscribe(
       data =>{
         this.toastr.success("Password updated.");
         console.log(data);

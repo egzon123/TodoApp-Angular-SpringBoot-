@@ -1,86 +1,162 @@
 <div *ngIf="user">
 
 <div class="container">
-  <form action="" (ngSubmit)="updateUser()" class="mt-4">
-    <div class="form-group">
-        <label><h3>Update Profile</h3></label>
-      <input required type="text" class="form-control" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}">
-    </div> 
-    <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
+  <h3 class="font-weight-light mt-4">Update User Profile</h3>
+  <form [formGroup] = "profileForm" (ngSubmit) = "updateUser()">
+    <div class="col-lg-12 p-0">
+      <mat-form-field>
+        <input [(ngModel)] = 'user.name' matInput placeholder="Name" formControlName="name">
+        <mat-error *ngIf = "name.hasError('required') || name.hasError('minlength')">
+          Please provide a name with more than 5 characters.
+        </mat-error>
+        <mat-error *ngIf = "name.hasError('maxlength')">The name is too long!</mat-error>
+      </mat-form-field>
     </div>
-    <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}">
+
+    <div class="col-lg-12 p-0 mt-4">
+      <mat-form-field>
+        <input [(ngModel)] = 'user.username' matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf = "username.hasError('required')">
+            Please provide a username with more than 3 characters.
+          </mat-error>
+          <mat-error *ngIf = "username.hasError('maxlength')">The username is too long!</mat-error>
+          <mat-error *ngIf = "username.hasError('minlength')">Please provide a username with more than 3 characters.</mat-error>
+      </mat-form-field>
     </div>
-      <button type="submit" (ngSubmit)="updateUser()" class="btn btn-success">Update Profile</button>
+
+    <div class="col-lg-12 p-0 mt-4">
+      <mat-form-field>
+        <input [(ngModel)] = 'user.email' matInput placeholder="E-Mail" formControlName="email" >
+        <mat-error *ngIf = "email.hasError('required')">
+            Please provide an email.
+          </mat-error>
+          <mat-error *ngIf = "email.hasError('pattern')">This email sucks!</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-12 p-0 mt-4">
+      <button mat-raised-button color="primary" type="submit" [disabled] = "profileForm.invalid">Update Profile</button>
+      <button class="ml-4" mat-button routerLink = "/users">Cancel</button>
+    </div>
   </form>
 
-  <div class="row">
-          <div class="col-6">
-              <form action="" (ngSubmit)="updateUserPassword()" class="mt-4">
-      
-                  <div class="form-group">
-                      <label><h3>Change Password</h3></label>
-                      <input  type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" name="password">
-              
-                  </div>
-                    <button type="submit" (ngSubmit)="updateUserPassword()" class="btn btn-success">Change Password</button>
-                </form>
-          </div>
-
-          <div class="col-6">
-              <form action="" (ngSubmit)="updateRole()" class="mt-4">
-                  <div class="form-group">
-                      <label><h3>Add Role</h3></label>
-                      <select type="text" class="form-control" [(ngModel)]="role" [ngModelOptions]="{standalone: true}" name="role">
-                        <option value="3">Admin</option>
-                        <option value="2">PM</option>
-                        <option value="1">User</option>
-                      </select>
-              
-                  </div>
-                    <button type="submit" (ngSubmit)="updateRole()" class="btn btn-success">Add Role</button>
-                </form>
-          </div>
-
-          <div class="col-6">
-            <form action="" (ngSubmit)="deleteRole()" class="mt-4">
-                <div class="form-group">
-                  <label><h3>Remove Role</h3></label>
-                    <select type="text" class="form-control" [(ngModel)]="removeRole" [ngModelOptions]="{standalone: true}" name="removeRole">
-                      <option value="3">Admin</option>
-                      <option value="2">PM</option>
-                      <option value="1">User</option>
-                    </select>
-            
-                </div>
-                  <button type="submit" (ngSubmit)="deleteRole()" class="btn btn-success">Remove Role</button>
-              </form>
+  <div class="row mt-4">
+    <div class="col-6">
+      <h3 class="font-weight-light mt-4">Update User Password</h3>
+      <form [formGroup] = "passwordForm" (ngSubmit)="updateUserPassword()">
+        <div class="col-lg-12 p-0 mt-4">
+          <mat-form-field>
+            <input type='password' [(ngModel)] = "_password" matInput placeholder="Password" formControlName="password">
+            <mat-error *ngIf = "password.hasError('required')">
+              Provide a password with more than 5 characters... Lazy
+            </mat-error>
+            <mat-error *ngIf = "password.hasError('maxlength')">The password is too long!</mat-error>
+            <mat-error *ngIf = "password.hasError('minlength')">This password sucks -.-</mat-error>
+          </mat-form-field>
         </div>
+        <div class="col-lg-12 p-0 mt-4">
+          <button mat-raised-button color="primary" type="submit" [disabled] = "passwordForm.invalid">Change Password</button>
+          <button class="ml-4" mat-button routerLink = "/users">Cancel</button>
+        </div>
+      </form>
+   </div>
+
+    <div class="col-6">
+      <h3 class="font-weight-light mt-4">Update User Role</h3>
+      <form [formGroup] = "updateRoleForm" (ngSubmit)="updateRole()" class="mt-4">             
+        <mat-form-field>
+          <mat-label>Roles</mat-label>
+          <mat-select [(value)]="role" matNativeControl required >
+            <mat-option value="3">Admin</mat-option>
+            <mat-option value="2">PM</mat-option>
+            <mat-option value="1">User</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="col-lg-12 p-0 mt-4">
+            <button mat-raised-button color="primary" type="submit">Update Role</button>
+            <button class="ml-4" mat-button routerLink = "/users">Cancel</button>
+          </div>
+      </form>
+    </div>
+
+    <div class="col-6 mt-4">
+      <h3 class="font-weight-light mt-4">Delete User Role</h3>
+        <form [formGroup] = "removeRoleForm" (ngSubmit)="deleteRole()" class="mt-4">             
+          <mat-form-field>
+            <mat-label>Roles</mat-label>
+            <mat-select [(value)]="removeRole" matNativeControl required >
+              <mat-option value="3">Admin</mat-option>
+              <mat-option value="2">PM</mat-option>
+              <mat-option value="1">User</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <div class="col-lg-12 p-0 mt-4">
+              <button mat-raised-button color="primary" type="submit" [disabled] = "removeRoleForm.invalid">Delete Role</button>
+              <button class="ml-4" mat-button routerLink = "/users">Cancel</button>
+            </div>
+        </form>
+    </div>
   </div>
   <button class="btn btn-primary mt-4" routerLink="/users">Cancel</button>
-  <!-- <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
-  <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter valid Target Date</div>
-  <div class="aler t alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Username</div> -->
-  
-  <!-- <form (ngSubmit)="!todoForm.invalid && saveUser()" #todoForm="ngForm">
-    <fieldset class="form-group">
-      <label>Description</label>
-      <input type="text" #description="ngModel" 
-            [(ngModel)]="todo.description" class="form-control" 
-                name="description" required="required" minlength="5">
-    </fieldset>
-
-
-    <fieldset class="form-group">
-        <label>Target Date</label>
-        <input type="date" #targetDate="ngModel"
-        [ngModel]="todo.targetDate | date:'yyyy-MM-dd' "
-        (ngModelChange)="todo.targetDate = $event"
-        class="form-control" name="targetDate" required="required" >
-    </fieldset>
-
-    <button type="submit" class="btn btn-success">Save</button>
-  </form>   -->
 </div>
 </div>
+
+<!-- <div class="container mt-5">
+  <div class="row">
+    <div class="mat-headline">Update User: <span class="font-weight-bold">{{getName()}}</span></div>
+    <div class="col-lg-12">
+      <form [formGroup] = "profileForm" (ngSubmit) = "updateUser()">
+        <div class="col-lg-12 p-0">
+          <mat-form-field>
+            <input matInput placeholder="Full Name" formControlName="name">
+            <mat-error *ngIf = "name.hasError('required') || name.hasError('minlength')">
+              Please provide a name with more than 5 characters.
+            </mat-error>
+            <mat-error *ngIf = "name.hasError('maxlength')">The name is too long!</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-12 p-0 mt-4">
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf = "username.hasError('required')">
+                Please provide a username with more than 3 characters.
+              </mat-error>
+              <mat-error *ngIf = "username.hasError('maxlength')">The username is too long!</mat-error>
+              <mat-error *ngIf = "username.hasError('minlength')">Please provide a username with more than 3 characters.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-12 p-0 mt-4">
+          <mat-form-field>
+            <input matInput placeholder="E-Mail" formControlName="email">
+            <mat-error *ngIf = "email.hasError('required')">
+                Please provide an email.
+              </mat-error>
+              <mat-error *ngIf = "email.hasError('pattern')">This email sucks!</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-12 p-0 mt-4">
+          <mat-form-field>
+            <input type='password' matInput placeholder="Password" formControlName="password">
+            <mat-error *ngIf = "password.hasError('required')">
+              Provide a password with more than 5 characters... Lazy
+            </mat-error>
+            <mat-error *ngIf = "password.hasError('maxlength')">The password is too long!</mat-error>
+            <mat-error *ngIf = "password.hasError('minlength')">This password sucks -.-</mat-error>
+          </mat-form-field>
+        </div>
+
+        
+
+        <div class="col-lg-12 p-0 mt-4">
+          <button mat-raised-button color="primary" type="submit" [disabled] = "profileForm.invalid">Update Profile</button>
+          <button class="ml-4" mat-button routerLink = "/users">Cancel</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div> -->
