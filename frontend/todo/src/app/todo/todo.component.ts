@@ -3,11 +3,13 @@ import { TodoDataService } from './../service/data/todo-data.service';
 import { Component, OnInit } from '@angular/core';
 import{ BasicAuthenticationService} from './../service/basic-authentication.service'
 import { Todo } from '../list-todos/list-todos.component';
+
 import { from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LabelComponent } from '../label/label.component';
 import { LabelService } from '../service/data/label-data.service';
+import { SourceListMap } from 'source-list-map';
 
 @Component({
   selector: 'app-todo',
@@ -18,6 +20,11 @@ export class TodoComponent implements OnInit {
 
   id:number
   todo: Todo
+  selectedSimpleItem :string='';
+    simpleItems = [];
+
+  
+
   // myForm: FormGroup;
 
   constructor(
@@ -27,16 +34,23 @@ export class TodoComponent implements OnInit {
     private router: Router,
     private toast: ToastrService,
     // private fb: FormBuilder,
-    private labelService:LabelService
+    private labelService:LabelService,
+    private formBuilder: FormBuilder
     
-  ) { }
+  ) {
 
+  }
+ 
+
+ngDoCheck(){
+  console.log(this.selectedSimpleItem)
+}
   ngOnInit() {
-    
+    this.simpleItems = [1, 2, 3];
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
     
-    this.todo = new Todo(this.id,'',false,new Date(),'',null);
+    this.todo = new Todo(this.id,'',false,new Date(),'',0,null);
     
     if(this.id!=-1) {
       this.todoService.retrieveTodo(this.authservice.getAuthenticatedUser(), this.id)
@@ -56,12 +70,15 @@ export class TodoComponent implements OnInit {
 
   }
 
+
   saveTodo() {
-   
+    this.todo.labels = this.labelService.getSelectedLabels();
+    console.log("inside todo component:->:",this.todo )
+    this.todo.priority =Number(this.selectedSimpleItem) 
     if(this.id == -1) { //=== ==
 
-       this.todo.labels = this.labelService.getSelectedLabels();
-      console.log("inside todo component:->:",this.todo )
+     
+        
       this.todoService.createTodo(this.authservice.getAuthenticatedUser(), this.todo)
           .subscribe (
             data => {

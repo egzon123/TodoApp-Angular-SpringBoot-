@@ -7,27 +7,27 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+SpringBootJwtAuthentication/.idea/**/workspace.xml
+SpringBootJwtAuthentication/.idea/**/tasks.xml
+SpringBootJwtAuthentication/.idea/**/usage.statistics.xml
+SpringBootJwtAuthentication/.idea/**/dictionaries
+SpringBootJwtAuthentication/.idea/**/shelf
 
 # Generated files
-.idea/**/contentModel.xml
+SpringBootJwtAuthentication/.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
+SpringBootJwtAuthentication/.idea/**/dataSources/
+SpringBootJwtAuthentication/.idea/**/dataSources.ids
+SpringBootJwtAuthentication/.idea/**/dataSources.local.xml
+SpringBootJwtAuthentication/.idea/**/sqlDataSources.xml
+SpringBootJwtAuthentication/.idea/**/dynamic.xml
+SpringBootJwtAuthentication/.idea/**/uiDesigner.xml
+SpringBootJwtAuthentication/.idea/**/dbnavigator.xml
 
 # Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+SpringBootJwtAuthentication/.idea/**/gradle.xml
+SpringBootJwtAuthentication/.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -43,22 +43,22 @@
 cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+SpringBootJwtAuthentication/.idea/**/mongoSettings.xml
 
 # File-based project format
 *.iws
 
 # IntelliJ
-out/
+SpringBootJwtAuthentication/out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
+SpringBootJwtAuthentication/.idea_modules/
 
 # JIRA plugin
-atlassian-ide-plugin.xml
+SpringBootJwtAuthentication/atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
-.idea/replstate.xml
+SpringBootJwtAuthentication/.idea/replstate.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
