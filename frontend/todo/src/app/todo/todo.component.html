@@ -1,64 +1,69 @@
+
 <H1>Todo</H1>
 
 <div class="container">
-  <div class="alert alert-warning" *ngIf="todoForm.touched && todoForm.invalid">
-    Enter valid values
-  </div>
-  <div
-    class="alert alert-warning"
-    *ngIf="todoForm.touched && targetDate.invalid"
-  >
-    Enter valid Target Date
-  </div>
-
+  <div class="alert alert-warning" *ngIf="todoForm.touched && todoForm.invalid">Enter valid values</div>
+  <div class="alert alert-warning" *ngIf="todoForm.touched && targetDate.invalid">Enter valid Target Date</div>
+ 
+  
   <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
     <fieldset class="form-group">
       <label>Description</label>
-      <input
-        type="text"
-        #description="ngModel"
-        [(ngModel)]="todo.description"
-        class="form-control"
-        name="description"
-        required="required"
-        minlength="5"
-      />
-      <div
-        class="alert alert-danger"
-        *ngIf="todoForm.touched && description.invalid"
-      >
-        Enter atleast 5 characters in Description
-      </div>
+      <input type="text" #description="ngModel" 
+            [(ngModel)]="todo.description" class="form-control" 
+                name="description" required="required" minlength="5">
+                <div class="alert alert-danger" *ngIf="todoForm.touched && description.invalid">Enter atleast 5 characters in Description</div>
     </fieldset>
 
     <fieldset class="form-group">
-      <label>Target Date</label>
-      <input
-        type="date"
-        #targetDate="ngModel"
-        [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
+        <label>Target Date</label>
+        <input type="date" #targetDate="ngModel"
+        [ngModel]="todo.targetDate | date:'yyyy-MM-dd' "
         (ngModelChange)="todo.targetDate = $event"
-        class="form-control"
-        name="targetDate"
-        required="required"
-      />
+        class="form-control" name="targetDate" required="required" >
     </fieldset>
 
     <label>Labels</label>
     <label-costum></label-costum>
 
     <label>Priority</label>
-    <ng-select
-      [items]="simpleItems"
-      [(ngModel)]="selectedSimpleItem"
-      name="selectedSimpleItem"
-    >
-    </ng-select>
+    <ng-select [items]="simpleItems"
+    [(ngModel)]="selectedSimpleItem" name="selectedSimpleItem">
+</ng-select>
 
-    <br />
+ 
+  <br>
     <button type="submit" class="btn btn-success">Save</button>
-    <button class="btn btn-info" routerLink="/todos" style="margin-left: 15px;">
-      Cancel
-    </button>
-  </form>
+    <button class="btn btn-info" routerLink="/todos" style="margin-left: 15px;">Cancel</button>
+  </form>  
 </div>
+
+<!-- <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <form [formGroup] = "myForm" (ngSubmit) = "saveTodo()">
+          <div class="col-lg-12 p-0">
+            <mat-form-field>
+              <input matInput placeholder="Dsecription" formControlName="description">
+              <mat-error *ngIf = "description.hasError('required')">
+                Please provide a dsecription.
+              </mat-error>
+              <mat-error *ngIf = "description.hasError('maxlength')">The des is too long!</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <fieldset class="form-group">
+              <label>Target Date</label>
+              <input type="date"
+              formControlName="date"
+              class="form-control" name="date" required="required" >
+          </fieldset>
+        </form>
+
+        <div class="col-lg-12 p-0 mt-4">
+            <button mat-raised-button color="primary" type="submit" [disabled] = "myForm.invalid">Save</button>
+            <button class="ml-4" mat-button routerLink = "/todos">Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div> -->
